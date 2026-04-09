@@ -21,8 +21,10 @@
 8. [Project Structure](#project-structure)
 9. [How It Works](#how-it-works)
 10. [Development](#development)
-11. [Troubleshooting](#troubleshooting)
-12. [License](#license)
+11. [NVIDIA NIM (Optional Cloud LLM)](#nvidia-nim-optional-cloud-llm)
+12. [Security](#security)
+13. [Troubleshooting](#troubleshooting)
+14. [License](#license)
 
 ---
 
@@ -429,6 +431,38 @@ edge-tts --list-voices | grep en-US        # macOS / Linux
 
 ---
 
+## NVIDIA NIM (Optional Cloud LLM)
+
+The file `_test_nvidia.py` provides an optional integration with **NVIDIA NIM** (hosted cloud models such as `deepseek-ai/deepseek-v3.1`). This is **not** required for the core local pipeline but useful for experimentation.
+
+### Setup
+
+1. Create an account at [build.nvidia.com](https://build.nvidia.com) and generate an API key.
+2. Add it to your **local** `.env` file (never commit this file):
+   ```dotenv
+   NVIDIA_API_KEY=nvapi-<your-key-here>
+   ```
+3. Run the test script:
+   ```bash
+   python _test_nvidia.py
+   ```
+
+> **Security note:** `_test_nvidia.py` and `.env` are both listed in `.gitignore` and will **never** be committed to version control. Only `.env.example` (with a placeholder value) is committed.
+
+---
+
+## Security
+
+| What | How it is protected |
+|---|---|
+| `.env` (real secrets) | Listed in `.gitignore` — never committed |
+| `_test_nvidia.py` | Listed in `.gitignore` — never committed |
+| NVIDIA API key | Read from `NVIDIA_API_KEY` env var via `python-dotenv` |
+| LLM server URL | Configurable via `AGENTIC_RAG_LLM_BASE_URL` — defaults to LAN address |
+| ChromaDB data | In `data/chroma_db/` — listed in `.gitignore` |
+
+---
+
 ## Troubleshooting
 
 | Problem | Solution |
@@ -440,6 +474,7 @@ edge-tts --list-voices | grep en-US        # macOS / Linux
 | TTS has no audio output | Check default audio output device in system settings |
 | `chromadb` import error | `pip install chromadb` (needs SQLite ≥ 3.35) |
 | Empty transcription | Speak louder or reduce `AGENTIC_RAG_AUDIO_SILENCE_DURATION` |
+| `NVIDIA_API_KEY is not set` | Add `NVIDIA_API_KEY=nvapi-...` to your `.env` file |
 
 ---
 
