@@ -1,4 +1,4 @@
-"""Tests for the STT module."""
+﻿"""Tests for the STT module."""
 
 from pathlib import Path
 from unittest.mock import MagicMock, patch
@@ -6,8 +6,8 @@ from unittest.mock import MagicMock, patch
 import numpy as np
 import pytest
 
-from agentic_rag.config.settings import Settings
-from agentic_rag.stt.speech_to_text import SpeechToText, TranscriptionResult
+from cortexrag.config.settings import Settings
+from cortexrag.stt.speech_to_text import SpeechToText, TranscriptionResult
 
 
 @pytest.fixture

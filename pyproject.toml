@@ -3,13 +3,13 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "agentic-rag-stt-tts"
+name = "cortexrag"
 version = "0.1.0"
-description = "Agentic RAG system with Speech-to-Text and Text-to-Speech using a local LLM"
+description = "CortexRAG — Agentic RAG pipeline with local STT & TTS"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
-keywords = ["rag", "stt", "tts", "llm", "ai", "agentic"]
+keywords = ["cortexrag", "rag", "stt", "tts", "llm", "ai", "agentic"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
@@ -59,7 +59,7 @@ dev = [
 ]
 
 [project.scripts]
-agentic-rag = "agentic_rag.__main__:app"
+cortexrag = "cortexrag.__main__:app"
 
 [tool.setuptools.packages.find]
 where = ["src"]

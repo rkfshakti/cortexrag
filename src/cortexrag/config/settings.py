@@ -1,7 +1,7 @@
-"""Application settings loaded from environment variables / .env file.
+﻿"""Application settings loaded from environment variables / .env file.
 
 All settings can be overridden via environment variables prefixed with
-``AGENTIC_RAG_``, e.g. ``AGENTIC_RAG_LLM_MODEL=my-model``.
+``CORTEXRAG_``, e.g. ``CORTEXRAG_LLM_MODEL=my-model``.
 """
 
 from functools import lru_cache
@@ -15,7 +15,7 @@ class Settings(BaseSettings):
     """Centralised configuration for every sub-system."""
 
     model_config = SettingsConfigDict(
-        env_prefix="AGENTIC_RAG_",
+        env_prefix="CORTEXRAG_",
         env_file=".env",
         env_file_encoding="utf-8",
         case_sensitive=False,

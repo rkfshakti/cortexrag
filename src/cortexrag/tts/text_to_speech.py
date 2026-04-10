@@ -1,4 +1,4 @@
-"""Text-to-Speech using Microsoft Edge TTS.
+﻿"""Text-to-Speech using Microsoft Edge TTS.
 
 *edge-tts* calls Microsoft's free streaming TTS service (the same engine that
 powers the Edge browser's Read Aloud feature) without requiring an API key.
@@ -23,7 +23,7 @@ import tempfile
 import time
 from pathlib import Path
 
-from agentic_rag.config.settings import Settings, get_settings
+from cortexrag.config.settings import Settings, get_settings
 
 logger = logging.getLogger(__name__)
 

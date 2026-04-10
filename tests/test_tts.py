@@ -1,12 +1,12 @@
-"""Tests for the TTS module."""
+﻿"""Tests for the TTS module."""
 
 from pathlib import Path
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
-from agentic_rag.config.settings import Settings
-from agentic_rag.tts.text_to_speech import TextToSpeech
+from cortexrag.config.settings import Settings
+from cortexrag.tts.text_to_speech import TextToSpeech
 
 
 @pytest.fixture
@@ -37,9 +37,9 @@ class TestTextToSpeech:
         mock_communicate = MagicMock()
         mock_communicate.save = fake_save
 
-        with patch("agentic_rag.tts.text_to_speech.edge_tts", create=True):
+        with patch("cortexrag.tts.text_to_speech.edge_tts", create=True):
             with patch(
-                "agentic_rag.tts.text_to_speech.TextToSpeech._async_synthesize",
+                "cortexrag.tts.text_to_speech.TextToSpeech._async_synthesize",
                 new_callable=AsyncMock,
                 side_effect=lambda text, path: Path(path).write_bytes(b"mp3"),
             ):
@@ -49,7 +49,7 @@ class TestTextToSpeech:
 
     def test_synthesize_uses_temp_file_when_no_path(self, tts: TextToSpeech) -> None:
         with patch(
-            "agentic_rag.tts.text_to_speech.TextToSpeech._async_synthesize",
+            "cortexrag.tts.text_to_speech.TextToSpeech._async_synthesize",
             new_callable=AsyncMock,
             side_effect=lambda text, path: path.write_bytes(b"mp3"),
         ):

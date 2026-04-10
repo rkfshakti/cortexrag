@@ -1,4 +1,4 @@
-"""Command-line interface for the Agentic RAG system.
+﻿"""Command-line interface for the Agentic RAG system.
 
 Commands
 --------
@@ -27,11 +27,11 @@ from rich.panel import Panel
 from rich.table import Table
 from rich import print as rprint
 
-from agentic_rag.config.settings import get_settings
+from cortexrag.config.settings import get_settings
 
 app = typer.Typer(
-    name="agentic-rag",
-    help="Agentic RAG with Speech-to-Text and Text-to-Speech (local QWEN model).",
+    name="cortexrag",
+    help="CortexRAG — Agentic RAG pipeline with local STT & TTS (QWEN model).",
     add_completion=False,
     rich_markup_mode="rich",
 )
@@ -66,7 +66,7 @@ def ingest(
 ) -> None:
     """Index documents into the knowledge base."""
     _configure_logging(verbose)
-    from agentic_rag.agent.rag_agent import RAGAgent
+    from cortexrag.agent.rag_agent import RAGAgent
 
     agent = RAGAgent()
 
@@ -93,7 +93,7 @@ def chat(
 ) -> None:
     """Start an interactive text-based chat session."""
     _configure_logging(verbose)
-    from agentic_rag.agent.rag_agent import RAGAgent
+    from cortexrag.agent.rag_agent import RAGAgent
 
     agent = RAGAgent(enable_tts=tts)
     settings = get_settings()
@@ -136,7 +136,7 @@ def voice(
 ) -> None:
     """Start an interactive voice chat session (STT + TTS)."""
     _configure_logging(verbose)
-    from agentic_rag.agent.rag_agent import RAGAgent
+    from cortexrag.agent.rag_agent import RAGAgent
 
     agent = RAGAgent(enable_stt=True, enable_tts=not no_tts)
     settings = get_settings()
@@ -179,7 +179,7 @@ def ask(
 ) -> None:
     """Ask a single question and print the answer."""
     _configure_logging(verbose)
-    from agentic_rag.agent.rag_agent import RAGAgent
+    from cortexrag.agent.rag_agent import RAGAgent
 
     agent = RAGAgent(enable_tts=tts)
     with console.status("[dim]Thinking …[/dim]"):
@@ -195,8 +195,8 @@ def status(
     _configure_logging(verbose)
     settings = get_settings()
 
-    from agentic_rag.llm.client import LLMClient
-    from agentic_rag.rag.retriever import Retriever
+    from cortexrag.llm.client import LLMClient
+    from cortexrag.rag.retriever import Retriever
 
     llm = LLMClient(settings)
     retriever = Retriever(settings)
@@ -231,7 +231,7 @@ def status(
 
 
 def _print_response(response) -> None:
-    from agentic_rag.agent.rag_agent import AgentResponse
+    from cortexrag.agent.rag_agent import AgentResponse
 
     r: AgentResponse = response
     retrieval_badge = (

@@ -1,6 +1,6 @@
-# Agentic RAG with STT & TTS
+﻿# CortexRAG
 
-> A fully local, privacy-first conversational AI system combining **Retrieval-Augmented Generation** (RAG), **Speech-to-Text** (STT), and **Text-to-Speech** (TTS) powered by a QWEN 3.5 4B model running on your own hardware.
+> A developer-first, fully local conversational AI pipeline combining **Retrieval-Augmented Generation** (RAG), **Speech-to-Text** (STT), and **Text-to-Speech** (TTS) powered by a QWEN model running on your own hardware. Built for builders who want full control — no cloud, no data leakage.
 
 ---
 
@@ -127,7 +127,7 @@ User Input
 
 > **Local LLM Server**  
 > The project is configured for a server at `http://192.168.68.113:1234` using the API contract below.  
-> Adjust `AGENTIC_RAG_LLM_BASE_URL` in your `.env` if your server address differs.
+> Adjust `CORTEXRAG_LLM_BASE_URL` in your `.env` if your server address differs.
 >
 > ```bash
 > curl http://192.168.68.113:1234/api/v1/chat \
@@ -146,7 +146,7 @@ User Input
 ```bash
 # 1. Clone the repository
 git clone <your-repo-url>
-cd "Agentic RAG STT_TTS"
+cd cortexrag
 
 # 2. Create and activate a virtual environment (recommended)
 python -m venv .venv
@@ -178,27 +178,27 @@ copy .env.example .env   # Windows
 
 ## Configuration
 
-All settings are controlled via environment variables (with the `AGENTIC_RAG_` prefix) or a `.env` file in the project root. Copy `.env.example` to `.env` and adjust:
+All settings are controlled via environment variables (with the `CORTEXRAG_` prefix) or a `.env` file in the project root. Copy `.env.example` to `.env` and adjust:
 
 | Variable | Default | Description |
 |---|---|---|
-| `AGENTIC_RAG_LLM_BASE_URL` | `http://192.168.68.113:1234` | LLM server base URL |
-| `AGENTIC_RAG_LLM_MODEL` | `qwen3.5-4b` | Model identifier |
-| `AGENTIC_RAG_LLM_SYSTEM_PROMPT` | *(helpful assistant)* | Default system prompt |
-| `AGENTIC_RAG_LLM_TIMEOUT` | `60` | HTTP timeout (seconds) |
-| `AGENTIC_RAG_VECTOR_STORE_PATH` | `./data/chroma_db` | ChromaDB persist directory |
-| `AGENTIC_RAG_EMBEDDING_MODEL` | `all-MiniLM-L6-v2` | Sentence-transformers model |
-| `AGENTIC_RAG_CHUNK_SIZE` | `512` | Characters per document chunk |
-| `AGENTIC_RAG_CHUNK_OVERLAP` | `64` | Overlap between chunks |
-| `AGENTIC_RAG_RETRIEVAL_TOP_K` | `3` | Documents returned per query |
-| `AGENTIC_RAG_SIMILARITY_THRESHOLD` | `0.3` | Minimum relevance score |
-| `AGENTIC_RAG_WHISPER_MODEL` | `base` | Whisper size (tiny/base/small/medium/large-v3) |
-| `AGENTIC_RAG_WHISPER_DEVICE` | `cpu` | `cpu` or `cuda` |
-| `AGENTIC_RAG_TTS_VOICE` | `en-US-AriaNeural` | Edge TTS voice name |
-| `AGENTIC_RAG_TTS_RATE` | `+0%` | Speech rate offset |
-| `AGENTIC_RAG_AUDIO_SAMPLE_RATE` | `16000` | Recording sample rate (Hz) |
-| `AGENTIC_RAG_AUDIO_SILENCE_DURATION` | `2.0` | Seconds of silence to end recording |
-| `AGENTIC_RAG_AUDIO_MAX_DURATION` | `30` | Maximum recording length (seconds) |
+| `CORTEXRAG_LLM_BASE_URL` | `http://192.168.68.113:1234` | LLM server base URL |
+| `CORTEXRAG_LLM_MODEL` | `qwen3.5-4b` | Model identifier |
+| `CORTEXRAG_LLM_SYSTEM_PROMPT` | *(helpful assistant)* | Default system prompt |
+| `CORTEXRAG_LLM_TIMEOUT` | `60` | HTTP timeout (seconds) |
+| `CORTEXRAG_VECTOR_STORE_PATH` | `./data/chroma_db` | ChromaDB persist directory |
+| `CORTEXRAG_EMBEDDING_MODEL` | `all-MiniLM-L6-v2` | Sentence-transformers model |
+| `CORTEXRAG_CHUNK_SIZE` | `512` | Characters per document chunk |
+| `CORTEXRAG_CHUNK_OVERLAP` | `64` | Overlap between chunks |
+| `CORTEXRAG_RETRIEVAL_TOP_K` | `3` | Documents returned per query |
+| `CORTEXRAG_SIMILARITY_THRESHOLD` | `0.3` | Minimum relevance score |
+| `CORTEXRAG_WHISPER_MODEL` | `base` | Whisper size (tiny/base/small/medium/large-v3) |
+| `CORTEXRAG_WHISPER_DEVICE` | `cpu` | `cpu` or `cuda` |
+| `CORTEXRAG_TTS_VOICE` | `en-US-AriaNeural` | Edge TTS voice name |
+| `CORTEXRAG_TTS_RATE` | `+0%` | Speech rate offset |
+| `CORTEXRAG_AUDIO_SAMPLE_RATE` | `16000` | Recording sample rate (Hz) |
+| `CORTEXRAG_AUDIO_SILENCE_DURATION` | `2.0` | Seconds of silence to end recording |
+| `CORTEXRAG_AUDIO_MAX_DURATION` | `30` | Maximum recording length (seconds) |
 
 ---
 
@@ -208,13 +208,13 @@ All settings are controlled via environment variables (with the `AGENTIC_RAG_` p
 
 ```bash
 # Index a single file
-agentic-rag ingest data/documents/manual.pdf
+cortexrag ingest data/documents/manual.pdf
 
 # Index an entire folder (recursively)
-agentic-rag ingest data/documents/
+cortexrag ingest data/documents/
 
 # Non-recursive directory scan
-agentic-rag ingest data/documents/ --no-recursive
+cortexrag ingest data/documents/ --no-recursive
 ```
 
 Supported formats: `.pdf`, `.txt`, `.md`, `.markdown`
@@ -225,14 +225,14 @@ Supported formats: `.pdf`, `.txt`, `.md`, `.markdown`
 
 ```bash
 # Interactive text chat (no audio)
-agentic-rag chat
+cortexrag chat
 
 # Text chat with spoken responses
-agentic-rag chat --tts
+cortexrag chat --tts
 ```
 
 ```
-╭─── Agentic RAG — Text Chat ────────────────────────────────╮
+╭─── CortexRAG — Text Chat ────────────────────────────────────────────╮
 │ Model: qwen3.5-4b @ http://192.168.68.113:1234             │
 │ Knowledge base: 142 chunk(s) indexed                        │
 │ TTS: off                                                    │
@@ -252,10 +252,10 @@ Sources: /data/documents/warranty.pdf
 
 ```bash
 # Full voice pipeline (microphone → STT → RAG → LLM → TTS speaker)
-agentic-rag voice
+cortexrag voice
 
 # Voice input only (no TTS output)
-agentic-rag voice --no-tts
+cortexrag voice --no-tts
 ```
 
 The system prints:
@@ -269,10 +269,10 @@ The system prints:
 
 ```bash
 # Ask a single question and exit
-agentic-rag ask "What is the refund process?"
+cortexrag ask "What is the refund process?"
 
 # With TTS
-agentic-rag ask "Summarise the product roadmap." --tts
+cortexrag ask "Summarise the product roadmap." --tts
 ```
 
 ---
@@ -280,12 +280,12 @@ agentic-rag ask "Summarise the product roadmap." --tts
 ### 5. Status Check
 
 ```bash
-agentic-rag status
+cortexrag status
 ```
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                  Agentic RAG Status                      │
+│                    CortexRAG Status                         │
 ├─────────────────┬───────────────────────────────────────┤
 │ LLM Server      │ http://192.168.68.113:1234             │
 │ LLM Model       │ qwen3.5-4b                             │
@@ -302,7 +302,7 @@ agentic-rag status
 ## Project Structure
 
 ```
-Agentic RAG STT_TTS/
+cortexrag/
 ├── README.md                  # This file
 ├── pyproject.toml             # Project metadata & dependencies (PEP 517/518)
 ├── requirements.txt           # Flat dependency list
@@ -311,9 +311,9 @@ Agentic RAG STT_TTS/
 ├── main.py                    # Top-level convenience entry point
 │
 ├── src/
-│   └── agentic_rag/           # Installable Python package
+│   └── cortexrag/           # Installable Python package
 │       ├── __init__.py
-│       ├── __main__.py        # python -m agentic_rag
+│       ├── __main__.py        # python -m cortexrag
 │       ├── main.py            # Typer CLI definitions
 │       │
 │       ├── config/
@@ -458,7 +458,7 @@ The file `_test_nvidia.py` provides an optional integration with **NVIDIA NIM** 
 | `.env` (real secrets) | Listed in `.gitignore` — never committed |
 | `_test_nvidia.py` | Listed in `.gitignore` — never committed |
 | NVIDIA API key | Read from `NVIDIA_API_KEY` env var via `python-dotenv` |
-| LLM server URL | Configurable via `AGENTIC_RAG_LLM_BASE_URL` — defaults to LAN address |
+| LLM server URL | Configurable via `CORTEXRAG_LLM_BASE_URL` — defaults to LAN address |
 | ChromaDB data | In `data/chroma_db/` — listed in `.gitignore` |
 
 ---
@@ -473,7 +473,7 @@ The file `_test_nvidia.py` provides an optional integration with **NVIDIA NIM** 
 | Slow first query | Whisper and embedding models are downloaded on first use |
 | TTS has no audio output | Check default audio output device in system settings |
 | `chromadb` import error | `pip install chromadb` (needs SQLite ≥ 3.35) |
-| Empty transcription | Speak louder or reduce `AGENTIC_RAG_AUDIO_SILENCE_DURATION` |
+| Empty transcription | Speak louder or reduce `CORTEXRAG_AUDIO_SILENCE_DURATION` |
 | `NVIDIA_API_KEY is not set` | Add `NVIDIA_API_KEY=nvapi-...` to your `.env` file |
 
 ---

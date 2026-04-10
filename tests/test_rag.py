@@ -1,4 +1,4 @@
-"""Tests for the RAG sub-system (document loader, embedder, vector store, retriever)."""
+﻿"""Tests for the RAG sub-system (document loader, embedder, vector store, retriever)."""
 
 import tempfile
 from pathlib import Path
@@ -6,10 +6,10 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from agentic_rag.config.settings import Settings
-from agentic_rag.rag.document_loader import DocumentChunk, DocumentLoader
-from agentic_rag.rag.embedder import Embedder
-from agentic_rag.rag.vector_store import VectorStore
+from cortexrag.config.settings import Settings
+from cortexrag.rag.document_loader import DocumentChunk, DocumentLoader
+from cortexrag.rag.embedder import Embedder
+from cortexrag.rag.vector_store import VectorStore
 
 
 # ── Fixtures ──────────────────────────────────────────────────────────────────
@@ -155,7 +155,7 @@ class TestVectorStore:
 
     def test_add_chunks_skips_duplicates(self, settings: Settings) -> None:
         store = self._make_store(settings)
-        from agentic_rag.rag.vector_store import VectorStore as VS
+        from cortexrag.rag.vector_store import VectorStore as VS
 
         chunk = DocumentChunk(text="hello", source="test.txt", chunk_index=0)
         existing_id = VS._chunk_id(chunk)

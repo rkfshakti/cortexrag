@@ -1,4 +1,4 @@
-"""HTTP client for the locally running LLM server.
+﻿"""HTTP client for the locally running LLM server.
 
 The server exposes the API format shown below (as used with LM Studio or a
 compatible local inference server):
@@ -22,7 +22,7 @@ from typing import Any
 
 import httpx
 
-from agentic_rag.config.settings import Settings, get_settings
+from cortexrag.config.settings import Settings, get_settings
 
 logger = logging.getLogger(__name__)
 
@@ -48,7 +48,7 @@ class LLMClient:
     ----------
     settings:
         Application settings. Defaults to the singleton returned by
-        :func:`~agentic_rag.config.settings.get_settings`.
+        :func:`~cortexrag.config.settings.get_settings`.
     """
 
     def __init__(self, settings: Settings | None = None) -> None:

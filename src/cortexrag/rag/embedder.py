@@ -1,4 +1,4 @@
-"""Sentence embedding using HuggingFace sentence-transformers.
+﻿"""Sentence embedding using HuggingFace sentence-transformers.
 
 The model is loaded once and cached for the lifetime of the :class:`Embedder`
 instance.  The default ``all-MiniLM-L6-v2`` model is small (~80 MB), fast on
@@ -13,7 +13,7 @@ from typing import Sequence
 
 import numpy as np
 
-from agentic_rag.config.settings import Settings, get_settings
+from cortexrag.config.settings import Settings, get_settings
 
 logger = logging.getLogger(__name__)
 

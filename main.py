@@ -1,4 +1,4 @@
-"""Top-level main.py — convenience wrapper for direct execution.
+﻿"""Top-level main.py — convenience wrapper for direct execution.
 
 Usage::
 
@@ -7,7 +7,7 @@ Usage::
     python main.py ingest data/documents/
 """
 
-from agentic_rag.main import app
+from cortexrag.main import app
 
 if __name__ == "__main__":
     app()

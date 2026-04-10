@@ -1,12 +1,12 @@
-"""Tests for the LLM HTTP client."""
+﻿"""Tests for the LLM HTTP client."""
 
 from unittest.mock import MagicMock, patch
 
 import httpx
 import pytest
 
-from agentic_rag.config.settings import Settings
-from agentic_rag.llm.client import LLMClient, LLMClientError, LLMResponse
+from cortexrag.config.settings import Settings
+from cortexrag.llm.client import LLMClient, LLMClientError, LLMResponse
 
 
 @pytest.fixture

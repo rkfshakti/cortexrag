@@ -1,4 +1,4 @@
-"""
+﻿"""
 Streamlit UI for the Agentic RAG + STT + TTS system.
 
 Launch:
@@ -16,8 +16,8 @@ import streamlit as st
 
 # ── Page config (must be first Streamlit call) ────────────────────────────────
 st.set_page_config(
-    page_title="Agentic RAG · STT & TTS",
-    page_icon="🤖",
+    page_title="CortexRAG · STT & TTS",
+    page_icon="🧠",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -31,31 +31,31 @@ if str(_src) not in sys.path:
 
 @st.cache_resource(show_spinner="Loading settings…")
 def _get_settings():
-    from agentic_rag.config.settings import get_settings
+    from cortexrag.config.settings import get_settings
     return get_settings()
 
 
 @st.cache_resource(show_spinner="Connecting to LLM…")
 def _get_llm():
-    from agentic_rag.llm.client import LLMClient
+    from cortexrag.llm.client import LLMClient
     return LLMClient(_get_settings())
 
 
 @st.cache_resource(show_spinner="Initialising knowledge base…")
 def _get_retriever():
-    from agentic_rag.rag.retriever import Retriever
+    from cortexrag.rag.retriever import Retriever
     return Retriever(_get_settings())
 
 
 @st.cache_resource(show_spinner="Loading Whisper STT model…")
 def _get_stt():
-    from agentic_rag.stt.speech_to_text import SpeechToText
+    from cortexrag.stt.speech_to_text import SpeechToText
     return SpeechToText(_get_settings())
 
 
 @st.cache_resource(show_spinner="Loading TTS…")
 def _get_tts():
-    from agentic_rag.tts.text_to_speech import TextToSpeech
+    from cortexrag.tts.text_to_speech import TextToSpeech
     return TextToSpeech(_get_settings())
 
 
@@ -144,7 +144,7 @@ def _tab_chat():
     # Run agent
     with st.chat_message("assistant"):
         with st.spinner("Thinking…"):
-            from agentic_rag.agent.rag_agent import RAGAgent
+            from cortexrag.agent.rag_agent import RAGAgent
             agent = RAGAgent(_get_settings())
             # Inject cached retriever & LLM to skip re-init
             agent._retriever = _get_retriever()
@@ -350,13 +350,13 @@ def _tab_tts():
     if st.button("🔊 Synthesise", type="primary", use_container_width=True) and tts_text.strip():
         with st.spinner("Synthesising audio…"):
             # Override settings inline for this call
-            from agentic_rag.config.settings import Settings
+            from cortexrag.config.settings import Settings
             temp_settings = Settings(
                 tts_voice=voice,
                 tts_rate=rate,
                 tts_volume=volume,
             )
-            from agentic_rag.tts.text_to_speech import TextToSpeech
+            from cortexrag.tts.text_to_speech import TextToSpeech
             tts = TextToSpeech(temp_settings)
             out_path = tempfile.mktemp(suffix=".mp3")
             try:
@@ -450,7 +450,7 @@ def _tab_status():
             st.error("LLM server is not reachable.")
         else:
             with st.spinner("Waiting for LLM response…"):
-                from agentic_rag.llm.client import LLMClientError
+                from cortexrag.llm.client import LLMClientError
                 try:
                     t0 = time.perf_counter()
                     resp = llm.chat(test_prompt, system_prompt="You are a concise assistant.")

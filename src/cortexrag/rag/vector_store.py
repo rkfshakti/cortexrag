@@ -1,4 +1,4 @@
-"""ChromaDB-backed persistent vector store.
+﻿"""ChromaDB-backed persistent vector store.
 
 Documents are stored in a local SQLite + HNSW index managed by ChromaDB.
 All data persists across restarts in the directory specified by
@@ -12,9 +12,9 @@ import uuid
 from dataclasses import dataclass
 from typing import Any, Sequence
 
-from agentic_rag.config.settings import Settings, get_settings
-from agentic_rag.rag.document_loader import DocumentChunk
-from agentic_rag.rag.embedder import Embedder
+from cortexrag.config.settings import Settings, get_settings
+from cortexrag.rag.document_loader import DocumentChunk
+from cortexrag.rag.embedder import Embedder
 
 logger = logging.getLogger(__name__)
 
@@ -40,7 +40,7 @@ class VectorStore:
     settings:
         Application settings.
     embedder:
-        Pre-instantiated :class:`~agentic_rag.rag.embedder.Embedder`.  If
+        Pre-instantiated :class:`~cortexrag.rag.embedder.Embedder`.  If
         omitted a new one is created using ``settings``.
     """
 

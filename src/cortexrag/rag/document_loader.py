@@ -1,4 +1,4 @@
-"""Document loader: reads files from disk and splits them into chunks.
+﻿"""Document loader: reads files from disk and splits them into chunks.
 
 Supported formats
 -----------------
@@ -19,7 +19,7 @@ from typing import Sequence
 
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-from agentic_rag.config.settings import Settings, get_settings
+from cortexrag.config.settings import Settings, get_settings
 
 logger = logging.getLogger(__name__)
 

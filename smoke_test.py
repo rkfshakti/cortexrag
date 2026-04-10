@@ -1,4 +1,4 @@
-"""
+﻿"""
 Quick smoke-test script — runs without any heavy ML models or audio hardware.
 Shows configuration, verifies all modules import cleanly, and tests the LLM
 server connection.
@@ -11,15 +11,15 @@ print("  Agentic RAG STT/TTS — Smoke Test")
 print("=" * 60)
 
 modules = [
-    ("Config / Settings",   "agentic_rag.config.settings",    "Settings"),
-    ("LLM Client",          "agentic_rag.llm.client",          "LLMClient"),
-    ("Document Loader",     "agentic_rag.rag.document_loader", "DocumentLoader"),
-    ("Embedder",            "agentic_rag.rag.embedder",        "Embedder"),
-    ("VectorStore",         "agentic_rag.rag.vector_store",    "VectorStore"),
-    ("Retriever",           "agentic_rag.rag.retriever",       "Retriever"),
-    ("STT",                 "agentic_rag.stt.speech_to_text",  "SpeechToText"),
-    ("TTS",                 "agentic_rag.tts.text_to_speech",  "TextToSpeech"),
-    ("RAGAgent",            "agentic_rag.agent.rag_agent",     "RAGAgent"),
+    ("Config / Settings",   "cortexrag.config.settings",    "Settings"),
+    ("LLM Client",          "cortexrag.llm.client",          "LLMClient"),
+    ("Document Loader",     "cortexrag.rag.document_loader", "DocumentLoader"),
+    ("Embedder",            "cortexrag.rag.embedder",        "Embedder"),
+    ("VectorStore",         "cortexrag.rag.vector_store",    "VectorStore"),
+    ("Retriever",           "cortexrag.rag.retriever",       "Retriever"),
+    ("STT",                 "cortexrag.stt.speech_to_text",  "SpeechToText"),
+    ("TTS",                 "cortexrag.tts.text_to_speech",  "TextToSpeech"),
+    ("RAGAgent",            "cortexrag.agent.rag_agent",     "RAGAgent"),
 ]
 
 print("\n[1] Module imports")
@@ -35,7 +35,7 @@ for label, module_path, cls_name in modules:
 
 # ── 2. Settings ───────────────────────────────────────────────────────────────
 print("\n[2] Configuration (from defaults / .env)")
-from agentic_rag.config.settings import get_settings
+from cortexrag.config.settings import get_settings
 s = get_settings()
 rows = [
     ("LLM Base URL",        s.llm_base_url),
@@ -53,7 +53,7 @@ for k, v in rows:
 
 # ── 3. LLM server connectivity ────────────────────────────────────────────────
 print("\n[3] LLM Server connectivity")
-from agentic_rag.llm.client import LLMClient, LLMClientError
+from cortexrag.llm.client import LLMClient, LLMClientError
 llm = LLMClient(s)
 reachable = llm.health_check()
 if reachable:
@@ -74,7 +74,7 @@ else:
 
 # ── 4. Document Loader ────────────────────────────────────────────────────────
 print("\n[4] Document Loader (in-memory)")
-from agentic_rag.rag.document_loader import DocumentLoader
+from cortexrag.rag.document_loader import DocumentLoader
 loader = DocumentLoader(s)
 chunks = loader.load_text(
     "The Agentic RAG system combines retrieval-augmented generation with "

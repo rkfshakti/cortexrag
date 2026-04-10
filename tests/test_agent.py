@@ -1,12 +1,12 @@
-"""Tests for the RAGAgent orchestrator."""
+﻿"""Tests for the RAGAgent orchestrator."""
 
 from unittest.mock import MagicMock, patch
 
 import pytest
 
-from agentic_rag.agent.rag_agent import AgentResponse, RAGAgent
-from agentic_rag.config.settings import Settings
-from agentic_rag.rag.vector_store import SearchResult
+from cortexrag.agent.rag_agent import AgentResponse, RAGAgent
+from cortexrag.config.settings import Settings
+from cortexrag.rag.vector_store import SearchResult
 
 
 @pytest.fixture
@@ -138,7 +138,7 @@ class TestRAGAgentVoice:
         agent._enable_stt = True
 
         mock_stt = MagicMock()
-        from agentic_rag.stt.speech_to_text import TranscriptionResult
+        from cortexrag.stt.speech_to_text import TranscriptionResult
 
         mock_stt.record_and_transcribe.return_value = TranscriptionResult(text="")
         agent._stt = mock_stt
@@ -155,7 +155,7 @@ class TestRAGAgentVoice:
         ]
 
         mock_stt = MagicMock()
-        from agentic_rag.stt.speech_to_text import TranscriptionResult
+        from cortexrag.stt.speech_to_text import TranscriptionResult
 
         mock_stt.record_and_transcribe.return_value = TranscriptionResult(
             text="Hello from voice", language="en"

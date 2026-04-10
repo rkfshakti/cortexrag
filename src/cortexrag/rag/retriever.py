@@ -1,4 +1,4 @@
-"""High-level retriever: thin façade over :class:`VectorStore`.
+﻿"""High-level retriever: thin façade over :class:`VectorStore`.
 
 The retriever is the component the agent interacts with.  It formats search
 results into a clean context string ready to be injected into an LLM prompt.
@@ -8,10 +8,10 @@ from __future__ import annotations
 
 import logging
 
-from agentic_rag.config.settings import Settings, get_settings
-from agentic_rag.rag.document_loader import DocumentLoader, DocumentChunk
-from agentic_rag.rag.embedder import Embedder
-from agentic_rag.rag.vector_store import SearchResult, VectorStore
+from cortexrag.config.settings import Settings, get_settings
+from cortexrag.rag.document_loader import DocumentLoader, DocumentChunk
+from cortexrag.rag.embedder import Embedder
+from cortexrag.rag.vector_store import SearchResult, VectorStore
 
 logger = logging.getLogger(__name__)
 

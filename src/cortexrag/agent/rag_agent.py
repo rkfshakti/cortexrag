@@ -1,4 +1,4 @@
-"""Agentic RAG orchestrator.
+﻿"""Agentic RAG orchestrator.
 
 Architecture (ReAct-style loop)
 --------------------------------
@@ -44,10 +44,10 @@ from __future__ import annotations
 import logging
 from dataclasses import dataclass, field
 
-from agentic_rag.config.settings import Settings, get_settings
-from agentic_rag.llm.client import LLMClient
-from agentic_rag.rag.retriever import Retriever
-from agentic_rag.rag.vector_store import SearchResult
+from cortexrag.config.settings import Settings, get_settings
+from cortexrag.llm.client import LLMClient
+from cortexrag.rag.retriever import Retriever
+from cortexrag.rag.vector_store import SearchResult
 
 logger = logging.getLogger(__name__)
 
@@ -271,14 +271,14 @@ class RAGAgent:
 
     def _get_stt(self):
         if self._stt is None:
-            from agentic_rag.stt.speech_to_text import SpeechToText
+            from cortexrag.stt.speech_to_text import SpeechToText
 
             self._stt = SpeechToText(self._settings)
         return self._stt
 
     def _get_tts(self):
         if self._tts is None:
-            from agentic_rag.tts.text_to_speech import TextToSpeech
+            from cortexrag.tts.text_to_speech import TextToSpeech
 
             self._tts = TextToSpeech(self._settings)
         return self._tts

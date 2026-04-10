@@ -1,4 +1,4 @@
-"""Speech-to-Text using *faster-whisper* (local, no API key required).
+﻿"""Speech-to-Text using *faster-whisper* (local, no API key required).
 
 Workflow
 --------
@@ -23,7 +23,7 @@ import numpy as np
 import sounddevice as sd
 import soundfile as sf
 
-from agentic_rag.config.settings import Settings, get_settings
+from cortexrag.config.settings import Settings, get_settings
 
 logger = logging.getLogger(__name__)
 
